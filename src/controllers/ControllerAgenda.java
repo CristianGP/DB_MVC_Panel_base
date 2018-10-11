@@ -61,16 +61,18 @@ public class ControllerAgenda {
         modelAgenda.conectarDB();
         viewAgenda.jtf_nombre.setText(modelAgenda.getNombre());
         viewAgenda.jtf_email.setText(modelAgenda.getEmail());
+        viewAgenda.jtf_telefono.setText(modelAgenda.getTelefono());
     }
 
-//    /**
-//     * Metodo para inicializar la ViewAgenda
-//     */
-//    public void initComponents() {
-//        viewAgenda.setLocationRelativeTo(null);
-//        viewAgenda.setTitle("Agenda MVC");
-//        viewAgenda.setVisible(true);
-//    }
+    /**
+     * Metodo para inicializar la ViewAgenda
+     */
+    public void initComponents() {
+        //viewAgenda.setLocationRelativeTo(null);
+        //viewAgenda.setTitle("Agenda MVC");
+        viewAgenda.setVisible(true);
+    }
+
 
     /**
      * Método para agregar el actionListener a cada boton de la vista
@@ -122,7 +124,9 @@ public class ControllerAgenda {
      * Muestra el nombre y email almacenados en el modelAgenda en el viewAgenda.
      */
     private void setValues() {
+        System.out.println("setValues - Controller Agenda");
         viewAgenda.jtf_nombre.setText(modelAgenda.getNombre());
         viewAgenda.jtf_email.setText(modelAgenda.getEmail());
+        viewAgenda.jtf_telefono.setText(modelAgenda.getTelefono());
     }
 }

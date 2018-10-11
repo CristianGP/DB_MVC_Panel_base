@@ -106,6 +106,7 @@ public class ControllerMain {
         // 
         controllerDetalleContacto.modelDetalleContacto.setNombre(controllerAgenda.modelAgenda.getNombre());
         controllerDetalleContacto.modelDetalleContacto.setEmail(controllerAgenda.modelAgenda.getEmail());
+        controllerDetalleContacto.modelDetalleContacto.setTelefono(controllerAgenda.modelAgenda.getTelefono());
         controllerDetalleContacto.initView();
         
         viewMain.setContentPane(controllerDetalleContacto.viewDetalleContacto);

@@ -24,6 +24,15 @@ public class ModelAgenda {
 
     private String nombre;
     private String email;
+    private String telefono;
+
+    public String getTelefono() {
+        return telefono;
+    }
+
+    public void setTelefono(String telefono) {
+        this.telefono = telefono;
+    }
 
     public String getNombre() {
         return nombre;
@@ -49,7 +58,7 @@ public class ModelAgenda {
      */
     public void conectarDB() {
         try {
-            conexion = DriverManager.getConnection("jdbc:mysql://localhost:3309/agenda_mvc", "user_mvc", "pass_mvc.2018");
+            conexion = DriverManager.getConnection("jdbc:mysql://localhost:3306/agenda_mvc", "user_mvc", "pass_mvc.2018");
             st = conexion.createStatement();
             String sql = "SELECT * FROM contactos;";
             System.out.println(sql);
@@ -69,8 +78,9 @@ public class ModelAgenda {
         try {
             nombre = rs.getString("nombre");
             email = rs.getString("email");
+            telefono = rs.getString("telefono");
         } catch (SQLException err) {
-            JOptionPane.showMessageDialog(null, "Error model 102: " + err.getMessage());
+            JOptionPane.showMessageDialog(null, "Error model 002: " + err.getMessage());
 
         }
     }
@@ -82,6 +92,12 @@ public class ModelAgenda {
      */
     public void moverPrimerRegistro() {
         System.out.println("moverPrimerRegistro");
+        try {
+            rs.first();
+            setValues();
+        } catch (Exception err) {
+            JOptionPane.showMessageDialog(null, "Error model 003: " + err.getMessage());
+        }
     }
 
     /**
@@ -92,6 +108,14 @@ public class ModelAgenda {
      */
     public void moverSiguienteRegistro() {
         System.out.println("moverSiguienteRegistro");
+        try {
+            if (!rs.isLast()) {
+                rs.next();
+                setValues();
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error ModelAgenda 004: " + ex.getMessage());
+        }
     }
 
     /**
@@ -102,6 +126,14 @@ public class ModelAgenda {
      */
     public void moverAnteriorRegistro() {
         System.out.println("moverAnteriorRegistro");
+        try {
+            if (!rs.isFirst()) {
+                rs.previous();
+                setValues();
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error ModelAgenda 005: " + ex.getMessage());
+        }
     }
 
     /**
@@ -111,5 +143,11 @@ public class ModelAgenda {
      */
     public void moverUltimoRegistro() {
         System.out.println("moverUltimoRegistro");
+        try {
+            rs.last();
+            setValues();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error ModelAgenda 006" + ex.getMessage());
+        }
     }
 }
