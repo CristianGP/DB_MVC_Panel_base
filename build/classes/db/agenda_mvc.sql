@@ -6,13 +6,14 @@ CREATE TABLE contactos(
     id_contacto integer NOT NULL PRIMARY KEY AUTO_INCREMENT,
     nombre varchar(50) NOT NULL,
     email varchar(50) NOT NULL
+    telefono varchar(50) NOT NULL
 )ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 
 INSERT INTO contactos (nombre, email) VALUES 
-('Dejah Thoris','dejah@barson.ma'), 
-('Jhon Carter','jhon@barson.ma'),
-('Carthoris Carter','carthoris@barson.ma');
+('Dejah Thoris','dejah@barson.ma''7712345678'), 
+('Jhon Carter','jhon@barson.ma''7712345678'),
+('Carthoris Carter','carthoris@barson.ma''7712345678');
 
 
 SELECT * FROM contactos;
