@@ -7,6 +7,10 @@ package controllers;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import models.ModelAgenda;
 import views.ViewAgenda;
 
@@ -34,6 +38,26 @@ public class ControllerAgenda {
                 jbtn_siguiente_actionPerformed();
             } else if (e.getSource() == viewAgenda.jbtn_ultimo) {
                 jbtn_ultimo_actionPerformed();
+            }else if(e.getSource() == viewAgenda.jbt_eliminar){
+                try {
+                    jbtn_eliminar();
+                } catch (SQLException ex) {
+                    Logger.getLogger(ControllerAgenda.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            } else if(e.getSource() == viewAgenda.jbt_insertar){
+                try {
+                    jbtn_insertar();
+                } catch (SQLException ex) {
+                    Logger.getLogger(ControllerAgenda.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            } else if(e.getSource() == viewAgenda.jbt_modificar){
+                try {
+                    jbtn_modificar();
+                } catch (SQLException ex) {
+                    Logger.getLogger(ControllerAgenda.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            } else if(e.getSource() == viewAgenda.jbt_nuevo){
+                jbtn_nuevo();
             }
 
         }
@@ -49,8 +73,9 @@ public class ControllerAgenda {
     public ControllerAgenda(ModelAgenda modelAgenda, ViewAgenda viewAgenda) {
         this.modelAgenda = modelAgenda;
         this.viewAgenda = viewAgenda;
+        initComponents();
         setActionListener();
-        initDB();
+        initDB();;
     }
 
     /**
@@ -82,6 +107,10 @@ public class ControllerAgenda {
         viewAgenda.jbtn_anterior.addActionListener(actionListener);
         viewAgenda.jbtn_siguiente.addActionListener(actionListener);
         viewAgenda.jbtn_ultimo.addActionListener(actionListener);
+        viewAgenda.jbt_eliminar.addActionListener(actionListener);
+        viewAgenda.jbt_insertar.addActionListener(actionListener);
+        viewAgenda.jbt_modificar.addActionListener(actionListener);
+        viewAgenda.jbt_nuevo.addActionListener(actionListener);
     }
 
     /**
@@ -129,4 +158,39 @@ public class ControllerAgenda {
         viewAgenda.jtf_email.setText(modelAgenda.getEmail());
         viewAgenda.jtf_telefono.setText(modelAgenda.getTelefono());
     }
+    
+    private void jbtn_eliminar() throws SQLException {
+            System.out.println("Action del boton jbtn_eliminar");
+            System.out.println(modelAgenda.getEmail());
+            modelAgenda.eliminarRegistro(modelAgenda.getEmail());
+            JOptionPane.showMessageDialog(viewAgenda, "Registro eliminado correctamente");
+            jbtn_primero_actionPerformed();
+        }
+
+        private void jbtn_insertar() throws SQLException {
+            System.out.println("Action del boton jbtn_insertar");
+            modelAgenda.setNombre(viewAgenda.jtf_nombre.getText());
+            modelAgenda.setEmail(viewAgenda.jtf_email.getText());
+            modelAgenda.insertarRegistro(modelAgenda.getNombre(),modelAgenda.getEmail(),modelAgenda.getTelefono());
+            JOptionPane.showMessageDialog(viewAgenda, "Registro guardado correctamente");
+            jbtn_primero_actionPerformed();
+        }
+
+        private void jbtn_modificar() throws SQLException {
+            System.out.println("Action del boton jbtn_modificar");
+            modelAgenda.modificarRegistro(viewAgenda.jtf_nombre.getText(), viewAgenda.jtf_email.getText(),viewAgenda.jtf_telefono.getText());
+            JOptionPane.showMessageDialog(viewAgenda, "Registro actualizado correctamente");
+            jbtn_primero_actionPerformed();
+        }
+
+        private void jbtn_nuevo() {
+            System.out.println("Action del boton jbtn_nuevo");
+            modelAgenda.setEmail(null);
+            modelAgenda.setNombre(null);
+             modelAgenda.setTelefono(null);
+            viewAgenda.jtf_email.setText(modelAgenda.getEmail());
+            viewAgenda.jtf_nombre.setText(modelAgenda.getNombre());
+            viewAgenda.jtf_telefono.setText(modelAgenda.getTelefono());
+            
+        }
 }

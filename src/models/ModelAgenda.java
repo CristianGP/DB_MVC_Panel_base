@@ -150,4 +150,22 @@ public class ModelAgenda {
             JOptionPane.showMessageDialog(null, "Error ModelAgenda 006" + ex.getMessage());
         }
     }
+     public void insertarRegistro(String nombre, String email,String telefono) throws SQLException {
+        System.out.print("Programa accion insertarRegistro");
+        st.executeUpdate("INSERT INTO contactos(nombre,email,telefono) VALUES" + "('" + nombre + "','" + email + "','" + telefono + "');");
+       
+    }
+
+    public void modificarRegistro(String nombre, String email,String telefono) throws SQLException {
+        System.out.print("Programa accion modificarRegistro");
+        String actualEmail = this.getEmail();
+        st.executeUpdate("UPDATE contactos SET nombre='" + nombre + "',email='" + email + "' ,telefono='" + telefono + "' WHERE email='" + actualEmail + "';");
+        this.conectarDB();
+    }
+
+    public void eliminarRegistro(String email) throws SQLException {
+        System.out.print("Programa accion eliminarRegistro");
+        st.executeUpdate("DELETE FROM contactos WHERE email='" + email + "';"); 
+        this.conectarDB();
+    }
 }

@@ -37,6 +37,10 @@ public class ViewAgenda extends javax.swing.JPanel {
         jbtn_ultimo = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jtf_telefono = new javax.swing.JTextField();
+        jbt_insertar = new javax.swing.JButton();
+        jbt_nuevo = new javax.swing.JButton();
+        jbt_modificar = new javax.swing.JButton();
+        jbt_eliminar = new javax.swing.JButton();
 
         jl_nombre.setText("Nombre");
 
@@ -51,6 +55,14 @@ public class ViewAgenda extends javax.swing.JPanel {
         jbtn_ultimo.setText(">|");
 
         jLabel1.setText("Telefono");
+
+        jbt_insertar.setText("Insertar");
+
+        jbt_nuevo.setText("Nuevo");
+
+        jbt_modificar.setText("Modificar");
+
+        jbt_eliminar.setText("Eliminar");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -78,6 +90,16 @@ public class ViewAgenda extends javax.swing.JPanel {
                             .addComponent(jtf_email, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jtf_nombre, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(104, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(19, 19, 19)
+                .addComponent(jbt_nuevo)
+                .addGap(18, 18, 18)
+                .addComponent(jbt_insertar)
+                .addGap(18, 18, 18)
+                .addComponent(jbt_modificar)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jbt_eliminar)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -100,13 +122,23 @@ public class ViewAgenda extends javax.swing.JPanel {
                     .addComponent(jbtn_anterior)
                     .addComponent(jbtn_siguiente)
                     .addComponent(jbtn_ultimo))
-                .addContainerGap(145, Short.MAX_VALUE))
+                .addGap(42, 42, 42)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jbt_nuevo)
+                    .addComponent(jbt_insertar)
+                    .addComponent(jbt_modificar)
+                    .addComponent(jbt_eliminar))
+                .addContainerGap(71, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
+    public javax.swing.JButton jbt_eliminar;
+    public javax.swing.JButton jbt_insertar;
+    public javax.swing.JButton jbt_modificar;
+    public javax.swing.JButton jbt_nuevo;
     public javax.swing.JButton jbtn_anterior;
     public javax.swing.JButton jbtn_primero;
     public javax.swing.JButton jbtn_siguiente;
